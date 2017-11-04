@@ -1,0 +1,32 @@
+Body{
+	
+	background-color: #1AD956;
+ margin: 0% 15% 0% 15%; 
+ }
+ hr{
+ height: 5px; background-color: #050501;
+ } 
+ h1{
+	 
+	 color: black;
+ text-align: center; 
+ } 
+h3{
+	
+ background-color: #F5DD42;
+ } 
+ table{
+	 
+ border-collapse: collapse; width: 70%; margin: auto;
+ }
+ th,td{
+ padding: 8px; text-align: left; border-bottom: 1px solid #ddd;
+ }
+ th{
+ background-color: #CFBC42; color: WHITE;
+ } 
+tr:hover{
+ background-color: #9E8F2B;
+ }
+ 
+ 
