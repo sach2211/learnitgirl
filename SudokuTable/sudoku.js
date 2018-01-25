@@ -1,5 +1,10 @@
 var request = require('superagent');
 
+// Add all the event listeners here
+document.getElementById("gamename").addEventListener("click", function () {
+  alert("The game is sudoku");
+})
+
 function generateSudokuTable() {
   request('https://sugoku.herokuapp.com/board?difficulty=easy')
   .then(r => {
