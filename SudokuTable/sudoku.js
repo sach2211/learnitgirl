@@ -1,3 +1,5 @@
+import { start } from 'repl';
+
 var request = require('superagent');
 
 // Add all the event listeners here
@@ -56,30 +58,77 @@ function checkSolution() {
 }
 
 function isValidSolution(matrix) {
-  var hash = [];
-  for(var i = 0; i < 9; i++) {
-    var hashrow = [];
-    for(var j = 0; j < 9; j++) {
-      hashrow.push('0');
-    }
-    hash.push(hashrow);
-  }
 
-  var invalid = false;
-  for(var i = 0; i < 9; i++) {
-    for(var j = 0; j < 9; j++) {
-      if (isNaN(matrix[i][j]) || matrix[i][j] !== 0 ) {
-        invalid = true;
-        break;
-      } else {
-        matrix[i][j]++;
+  checkEachRow(matrix);
+  checkEachColumn(matrix);
+  checkEachSubMatrix(matrix);
+
+}
+
+function checkEachRow(matrix) {
+  // for each row
+  for (var i = 0; i < 9; i++) {
+    // check this row for duplicates
+    var numArr = [];
+    for (var j = 0; j < 9; j++) {
+      numArr.push(matrix[i][j]);
+    }
+    checkIfAllUnique(numArr);
+  }
+}
+
+function checkEachColumn (matrix) {
+  // for each row
+  for (var i = 0; i < 9; i++) {
+    // check this row for duplicates
+    var numArr = [];
+    for (var j = 0; j < 9; j++) {
+      numArr.push(matrix[j][i]);
+    }
+    checkIfAllUnique(numArr);
+  }
+}
+
+function checkEachSubMatrix() {
+  for (var k = 0; k < 8; k += 3) {
+    var numArr = [];
+    for (var i = 0; i < 3; i++) {
+      for (var j = 0; j < 3; j ++) {
+        numArr.push(matrix[k+i][k+j]);
       }
     }
-    if (invalid) break;
+    checkIfAllUnique(numArr);
   }
 
-  // 
-  return invalid;
 }
+
+function checkIfAllUnique(arr) {
+  var hash = [];
+  for(var i = 1; i <= 9; i++) {
+      hash[i] = 0;
+  }
+
+  var hasNanNs = false;
+  for(var i = 0; i < 9; i++) {
+    if (isNaN(arr[i])) {
+      hasNanNs = true;
+      break;
+    } else {
+      hash[arr[i]]++;
+    }
+  }
+
+  if (hasNanNs) return false;
+
+  var allUq = true;
+  for (var i = 0; i < 9; i++) {
+    if (arr[i] !== 1) {
+      allUq = false;
+      break;
+    }
+  }
+  return allUq;
+}
+
 
 generateSudokuTable();
