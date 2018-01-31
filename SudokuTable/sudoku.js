@@ -13,9 +13,9 @@ document.getElementById("resetb").addEventListener("click", function () {
 document.getElementById("submitb").addEventListener("click", function () {
   var solved = checkSolution();
   if (solved) {
-    alert("Congratulations !! Correct solution ");
-  } else {
     alert("Oohoo !! Incorrect solution ");
+  } else {
+    alert("Congratulations !! Correct solution ");
   }
 });
 

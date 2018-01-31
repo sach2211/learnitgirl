@@ -14,9 +14,9 @@ document.getElementById("resetb").addEventListener("click", function () {
 document.getElementById("submitb").addEventListener("click", function () {
   var solved = checkSolution();
   if (solved) {
-    alert("Congratulations !! Correct solution ");
+    alert("Oohoo !! Incorrect solution ");
   } else {
-    alert("Oohoo !! InCorrect solution ");
+    alert("Congratulations !! Correct solution ");
   }
 });
 
@@ -52,7 +52,35 @@ function checkSolution() {
   }
 
   console.log("Filled Vals", filledValues);
-  return false;
+  return isValidSolution(filledValues);
+  // return false;
+}
+
+function isValidSolution(matrix) {
+  var hash = [];
+  for(var i = 0; i < 9; i++) {
+    var hashrow = [];
+    for(var j = 0; j < 9; j++) {
+      hashrow.push('0');
+    }
+    hash.push(hashrow);
+  }
+
+  var invalid = false;
+  for(var i = 0; i < 9; i++) {
+    for(var j = 0; j < 9; j++) {
+      if (isNaN(matrix[i][j]) || matrix[i][j] !== 0 ) {
+        invalid = true;
+        break;
+      } else {
+        matrix[i][j]++;
+      }
+    }
+    if (invalid) break;
+  }
+
+  // 
+  return invalid;
 }
 
 generateSudokuTable();
